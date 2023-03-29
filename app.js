@@ -18,8 +18,6 @@ app.get('/', (req, res)=> {
 //routes
 app.use(router);
 
-
-
 const start = async () => {
     console.log('server starting...')
     app.listen(PORT, ()=> {
@@ -34,3 +32,10 @@ const start = async () => {
 }
 
 start()
+
+//to start interacting with db
+
+//create model that creates the schema for a task
+
+//use that schema to peform crud operations
+//this would be your controller

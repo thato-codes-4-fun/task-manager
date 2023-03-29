@@ -1,25 +1,27 @@
 const express = require('express')
 const router = express.Router()
+const {createTask, getAllTask} = require('../controller/task')
 
 
 //create a task
 router.post('/api/v1/tasks', (req, res) => {
     const data = req.body
     console.log('getting data...', data)
+    const task = data.name
+    createTask(data)
     res.send(data)
 })
 
 //get all tasks
-router.get('/api/v1/tasks', (req, res) => {
+router.get('/api/v1/tasks', async (req, res) => {
     console.log('hello')
-    res.json({ tasks: []
-    })
+    const tasks = await getAllTask()
+    res.json({ tasks })
 })
 //get specific task
 router.get('/api/v1/tasks/:id', (req, res   ) => {
     const id = req.params.id
-    res.send(`geting task with id: ${id
-    }`)
+    res.send(`geting task with id: ${id}`)
 })
 //update a task ??? patch.
 router.patch('/api/v1/tasks/:id', (req, res) => {
