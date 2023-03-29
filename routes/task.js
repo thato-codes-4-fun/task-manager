@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const {createTask, getAllTask, deleteATask} = require('../controller/task')
+const { createTask, getAllTask, deleteATask, updateTask, getTask } = require('../controller/task')
 
 
 //create a task
@@ -18,17 +18,21 @@ router.get('/api/v1/tasks', async (req, res) => {
     res.json({ tasks })
 })
 //get specific task
-router.get('/api/v1/tasks/:id', (req, res   ) => {
+router.get('/api/v1/tasks/:id', async (req, res) => {
     const id = req.params.id
-    res.send(`geting task with id: ${id}`)
+    const task = await getTask(id)
+    res.json({task})
 })
 //update a task ??? patch.
-router.patch('/api/v1/tasks/:id', (req, res) => {
-    const id = req.body.id
-    res.send(`patchig for id ${id}`);
+router.patch('/api/v1/tasks/:id', async(req, res) => {
+    const id = req.params.id
+    const data = req.body
+    console.log(`the body ${data}`)
+    const task = await updateTask(id, data)
+    res.json({task});
 })
 
-//delete a tasś
+//delete a task
 router.delete('/api/v1/tasks/:id',async (req, res) => {
     const id = req.params.id
     await deleteATask(id)

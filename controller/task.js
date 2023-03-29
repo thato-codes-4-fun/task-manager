@@ -1,5 +1,11 @@
 const task = require('../model/task')
 
+
+//get specific task
+const getTask = (id) => {
+    return task.findById({_id : id})
+}
+
 //create a task
 const createTask = (tasktoadd)=> {
     const data = new task({ name: `${tasktoadd.name}` });
@@ -13,8 +19,9 @@ const getAllTask =  ()=> {
 }
 
 //update a task
-const updateTask = ()=> {
-    
+const updateTask = (id, body)=> {
+    const data = task.updateOne({_id: id}, body)
+    return data
 }
 
 //delete a task
@@ -26,7 +33,9 @@ const deleteATask = (id)=> {
 module.exports = {
     createTask,
     getAllTask,
-    deleteATask
+    deleteATask,
+    updateTask,
+    getTask,
 }
 
 
