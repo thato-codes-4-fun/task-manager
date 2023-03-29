@@ -10,7 +10,6 @@ const createTask = (tasktoadd)=> {
 const getAllTask =  ()=> {
     const data = task.find()
     return data
-
 }
 
 //update a task
@@ -19,13 +18,15 @@ const updateTask = ()=> {
 }
 
 //delete a task
-const deleteATask = ()=> {
-    
+const deleteATask = (id)=> {
+    const data = task.deleteOne({_id: id})
+    return data
 }
 
 module.exports = {
     createTask,
     getAllTask,
+    deleteATask
 }
 
 
