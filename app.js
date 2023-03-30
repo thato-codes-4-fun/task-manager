@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const router = require('./routes/task')
+const task = require('./routes/task')
 require('dotenv').config()
 const PORT = process.env.PORT || 3000
 const connectDB = require('./db/connect')
@@ -10,13 +10,13 @@ const MONGO_URI = process.env.MONGO_URI
 app.use(express.json());
 app.use(express.static('public'))
 
+
 app.get('/', (req, res)=> {
     res.send('we are home')
 })
 
-
 //routes
-app.use(router);
+app.use('/api/v1/tasks', task);
 
 const start = async () => {
     console.log('server starting...')
@@ -32,10 +32,3 @@ const start = async () => {
 }
 
 start()
-
-//to start interacting with db
-
-//create model that creates the schema for a task
-
-//use that schema to peform crud operations
-//this would be your controller

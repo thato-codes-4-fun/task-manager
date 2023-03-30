@@ -54,7 +54,7 @@ const updateTask = async (req, res) => {
     if (task.nModified===0){
         return res.status(404).json({error: 'item not changed'})
     }
-   return res.status(200).json({success: 'item changed'});
+   return res.status(200).json({task});
 
 }
 
