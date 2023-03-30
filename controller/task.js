@@ -20,8 +20,13 @@ const getAllTask =  ()=> {
 
 //update a task
 const updateTask = (id, body)=> {
-    const data = task.updateOne({_id: id}, body)
-    return data
+    try {
+        const data = task.updateOne({_id: id}, body)
+        return data;
+    } catch (error) {
+        console.log(error)
+        return "error"
+    }
 }
 
 //delete a task
