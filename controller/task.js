@@ -1,6 +1,5 @@
 const taskSchema = require('../model/task')
 
-
 //get specific task
 const getTask = async (req, res) => {
     const id = req.params.id
